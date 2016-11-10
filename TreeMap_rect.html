@@ -26,11 +26,15 @@
 				
 			d3.json("hotels15.json", function(data)
 				{
+				//  Get an error here saying
+				// d3.layout.treemap(...).size(...).nodes(...).value is not a function
+				
 					var treemap = d3.layout.treemap()
 						.size([width,height])
 						.nodes(data)
 						.value(function(d)
 						{
+							// i is a field in the json
 							return d.i;
 						});
 						
