@@ -2,9 +2,7 @@
 <html>
 <meta charset="utf-8">
 	<head>
-	<title> TreeMap </title>
-	
-	
+		<title> TreeMap </title>
 	</head>
 	
 	<body>
@@ -14,22 +12,26 @@
 	var color = d3.scale.category10();
 	
 	var margin = {top: 20, right: 20, bottom: 60, left: 40},
-    width = 860 - margin.left - margin.right,
-    height = 800 - margin.top - margin.bottom;
+    	width = 860 - margin.left - margin.right,
+    	height = 800 - margin.top - margin.bottom;
 	
 	var div = d3.select("body")
 				.append("div")
-				.style("width",width+margin.left+margin.right+"px")
-				.style("height",height+margin.top+margin.bottom+"px");
-	
+				.style("width",width+margin.left+margin.right)
+				.style("height",height+margin.top+margin.bottom);
+		
+	//Using treeMap layout
 	var treemap = d3.layout.treemap()
-					.size([width,height]);
+			.size([width,height]);
 				
+	// importing json file hotel15.json containing hotel data
 			d3.json("hotels15.json", function(data)
 				{
 					
 						var nodes = treemap.nodes(data);
-
+	//treemap.nodes should return array of nodes associated with json root
+	// with values x,y,dx,dy, but i get 0 for these values
+				
 						div.selectAll("div").data(nodes).enter()
 							.append("div")
 							.style("left",function(d){return d.x+"px";})
@@ -46,18 +48,9 @@
 							});
 				
 				});
-				
-				
-				
 		
-	
-	
-	
 	</script>
 	</body>
-
-
-
 
 </html>
 
