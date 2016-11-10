@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+	<head>
+	<title> TreeMap </title>
+	
+	
+	</head>
+	
+	<body>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script>
+	
+	var color = d3.scale.category10();
+	
+	var margin = {top: 20, right: 20, bottom: 60, left: 40},
+    width = 860 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
+	
+	var div = d3.select("body")
+				.append("div")
+				.style("width",width+margin.left+margin.right+"px")
+				.style("height",height+margin.top+margin.bottom+"px");
+	
+	var treemap = d3.layout.treemap()
+					.size([width,height]);
+				
+			d3.json("hotels15.json", function(data)
+				{
+					
+						var nodes = treemap.nodes(data);
+
+						div.selectAll("div").data(nodes).enter()
+							.append("div")
+							.style("left",function(d){return d.x+"px";})
+							.style("top",function(d){return d.y+"px";})
+							.style("width",function(d){return d.dx+"px";})
+							.style("height",function(d){return d.dy+"px";})
+							.style("background-color",function(d)
+							{
+								return color(d.f);
+							})
+							.text(function(d)
+							{
+								return d.f;
+							});
+				
+				});
+				
+				
+				
+		
+	
+	
+	
+	</script>
+	</body>
+
+
+
+
+</html>
+
+
+
+
+
+
+
+

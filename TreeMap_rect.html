@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+	<head>
+	<title> TreeMap </title>
+	</head>
+	
+	<body>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script>
+	
+	var color = d3.scale.category10();
+	
+	//optional
+	var colorScale = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+	
+	var margin = {top: 20, right: 20, bottom: 60, left: 40},
+    width = 860 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
+	
+	var svg = d3.select("body")
+				.append("svg")
+				.attr("width",width+margin.left+margin.right)
+				.attr("height",height+margin.top+margin.bottom);			
+				
+			d3.json("hotels15.json", function(data)
+				{
+					var treemap = d3.layout.treemap()
+						.size([width,height])
+						.nodes(data)
+						.value(function(d)
+						{
+							return d.i;
+						});
+						
+						
+					var box = svg.selectAll(".box")
+								.data(treemap)
+								.enter()
+								.append("g")
+								.attr("class","box");
+								
+						box.append("rect")
+							.attr("x", function(d)
+							{
+								return d.x;
+							})
+							.attr("y", function(d)
+							{
+								return d.y;
+							})
+							.attr("width", function(d){return d.dx;})
+							.attr("height",function(d){return d.dy;})
+							.attr("fill", function(d){return color(d.f);})
+							.attr("stroke","#fff");
+				
+				});
+	
+	</script>
+	</body>
+
+
+
+
+</html>
+
+
+
+
+
+
+
+
