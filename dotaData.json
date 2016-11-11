@@ -1,0 +1,22 @@
+{
+"name": "DOTA2",
+	"children": [
+		{
+		"name": "Invoker",
+		"size": 100
+		},
+		{
+		"name": "Skywrath Mage",
+		"size": 80
+		},
+		{
+		"name": "Windranger",
+		"size": 90
+		},
+		{
+		"name": "Crystal maiden",
+		"size": 50
+		}
+			]
+}
+		
